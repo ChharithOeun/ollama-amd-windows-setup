@@ -1,3 +1,4 @@
+<p align="center"><img src="assets/banner.png" alt="Banner" width="100%"></p>
 # Ollama AMD GPU on Windows
 
 > **The guide that should exist but doesn't.**
@@ -165,7 +166,9 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/rocm.gpg] \
     https://repo.radeon.com/rocm/apt/6.2 $CODENAME main" | \
     sudo tee /etc/apt/sources.list.d/rocm.list
 
-echo -e "Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600" | \
+echo -e "Package: *
+Pin: release o=repo.radeon.com
+Pin-Priority: 600" | \
     sudo tee /etc/apt/preferences.d/rocm-pin-600
 
 sudo apt-get update

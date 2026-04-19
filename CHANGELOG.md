@@ -1,24 +1,76 @@
 # Changelog
 
-All notable changes to this guide will be documented here.
+All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2026-03-29
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2024-04-19
 
 ### Added
-- Initial release covering three methods: WSL2+ROCm, Native Windows (ROCm+Vulkan), Docker
-- GPU compatibility table for RX 5000/6000/7000/9000 series
-- `verify_ollama_gpu.py` — automated detection + inference test script
-- `wsl2_setup.sh` — automated WSL2 ROCm + Ollama installer
-- `docker-compose.yml` — Docker method with Vulkan fallback
-- `troubleshooting.md` — 10 failure modes with root causes and fixes
-- `gpu_compatibility.md` — full GFX version matrix with per-card method recommendations
-- Coverage of `ollama-for-amd` community fork (v0.18.2, ROCm 6.4)
-- Vulkan backend documentation (Ollama v0.12.11+, `OLLAMA_VULKAN=1`)
-- Environment variable reference
 
-### Sources
-- Ollama official hardware docs: https://docs.ollama.com/gpu
-- Ollama AMD preview blog post (March 2024): https://ollama.com/blog/amd-preview
-- Phoronix Vulkan coverage: https://www.phoronix.com/news/ollama-0.12.11-Vulkan
-- Community fork: https://github.com/likelovewant/ollama-for-amd
-- GitHub issues: #12388, #12752, #10781, #11975, #3107
+- Initial release of Ollama AMD Windows Setup
+- **Scripts**:
+  - `verify_gpu.py` - Verify Ollama, Vulkan, and GPU setup
+  - `chat.py` - Interactive Python chat client with streaming support
+  - `pull_models.py` - Pull models from Ollama registry via REST API
+  - `benchmark.py` - Benchmark model performance (tokens/sec)
+- **Documentation**:
+  - `README.md` - Complete setup and usage guide with badges
+  - `INSTALL.md` - Step-by-step installation instructions
+  - `CONTRIBUTING.md` - Contribution guidelines
+  - `CHANGELOG.md` - This file
+- **Configuration**:
+  - `requirements.txt` - Python dependencies (requests)
+  - `run.bat` - Interactive menu for Windows users
+  - `.gitignore` - Standard Python/Ollama ignores
+  - `LICENSE` - MIT License
+- **CI/CD**:
+  - `.github/workflows/ci.yml` - Automated testing (Ubuntu, Windows, macOS)
+  - `.github/workflows/changelog.yml` - Auto-changelog on main push
+- **Issue Templates**:
+  - `.github/ISSUE_TEMPLATE/bug_report.md` - Bug report template
+  - `.github/ISSUE_TEMPLATE/feature_request.md` - Feature request template
+
+### Features
+
+- **AMD GPU Support**: Vulkan backend (not ROCm, as it's unavailable on Windows)
+- **REST API Integration**: Pure requests-based scripts (no llama_cpp dependency)
+- **Streaming Support**: Chat and API streaming responses
+- **Model Management**: Pull, list, and manage Ollama models
+- **Performance Benchmarking**: Measure tokens/second for models
+- **GPU Diagnostics**: Verify Vulkan, GPU detection, and Ollama setup
+- **Web UI Integration**: Open-WebUI support instructions
+- **Cross-Platform CI**: Test matrix: Ubuntu, Windows, macOS × Python 3.10-3.12
+
+### Documentation
+
+- Quick start guide
+- Recommended models with VRAM requirements
+- Common troubleshooting solutions
+- API usage examples (curl, Python)
+- Detailed installation instructions
+- Contributing guidelines
+
+### Known Limitations
+
+- Ollama on Windows uses Vulkan backend (ROCm unavailable)
+- Requires Radeon GPU with Vulkan 1.3 support
+- Model performance depends on GPU VRAM
+
+---
+
+## Roadmap
+
+### Future Versions
+
+- Model caching improvements
+- Performance profiling tools
+- Integration with AMD monitoring tools
+- Windows service installation option
+- GUI launcher (optional)
+- Multi-model concurrent serving
+
+---
+
+**Support**: [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-☕-orange.svg)](https://buymeacoffee.com/chharith)
